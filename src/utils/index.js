@@ -18,9 +18,18 @@ exports.listColors = async (collection) => {
 }
 exports.deleteColor = async (collection, dataObj) => {
   try{
-    const delete1 = await collection.deleteOne({color:dataObj})
+    const delete1 = await collection.find(dataObj).deleteOne({color: dataObj})
     console.log(delete1)
      } catch (error){
     console.log(error)
   }
+}
+exports.updateList = async (collection, dataObj) => {
+  try{
+    const update1 = await collection.updateOne({color: dataObj})
+    console.log(update1)
+  } catch (error){
+    console.log(error)
+  }
+  
 }
