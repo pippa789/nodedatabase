@@ -1,35 +1,36 @@
-const exp = require("constants")
+// const exp = require("constants")
 
 
 exports.addColor = async (collection, dataObj) => {
-  try{
+  try {
     await collection.insertOne(dataObj)
-  } catch(error){
+  } catch (error) {
     console.log(error)
   }
 }
 exports.listColors = async (collection) => {
-  try{
+  try {
     const listAll = await collection.find().toArray();
     console.log(listAll)
-  } catch (error){
+  } catch (error) {
     console.log(error)
   }
 }
+
 exports.deleteColor = async (collection, dataObj) => {
-  try{
-    const delete1 = await collection.find(dataObj).deleteOne({color: dataObj})
+  try {
+    const delete1 = await collection.deleteOne({ color: dataObj })
     console.log(delete1)
-     } catch (error){
+  } catch (error) {
     console.log(error)
   }
 }
-exports.updateList = async (collection, dataObj) => {
-  try{
-    const update1 = await collection.updateOne({color: dataObj})
+exports.updateColor = async (collection, dataObj) => {
+  try {
+    const update1 = await collection.findOneAndUpdate({ color: dataObj.color}, {$set:{color: dataObj.newColor}})  
     console.log(update1)
-  } catch (error){
+  } catch (error) {
     console.log(error)
   }
-  
+
 }

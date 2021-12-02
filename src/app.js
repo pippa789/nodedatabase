@@ -1,5 +1,5 @@
 const connection = require("./db/connection.js")
-const { addColor, listColors, deleteColor, updateList} = require("./utils")
+const { addColor, listColors, deleteColor, updateColor} = require("./utils")
 
 const command = process.argv[2];
 
@@ -16,10 +16,14 @@ const app = async ()=>{
         await connection(listColors);
     } 
     else if (command === "del"){
-        await connection(deleteColor)
+        await connection(deleteColor, process.argv[3])
     }
     else if (command === "update"){
-        await connection(updateList)
+        const updatedColor = {
+            color: process.argv[3], 
+            newColor: process.argv[4]
+        }
+        await connection(updateColor, updatedColor)
     }
      else{
         console.log("incorrect input")
